@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 ;
 
 
@@ -38,10 +40,36 @@ public class Product {
 
     private LocalDateTime dateTime;
     // Данный метод будет заполнять поле даты и времени при создании объекта класса
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+//    лист всех фотографий
+
+    private List<Image> imageList = new ArrayList<>();
+
+
+    public void addImageToProduct(Image image){
+        image.setProduct(this);
+        imageList.add(image);
+    } // Данный метод позволяет добавить фотографию в лист текущего продукта
+
     @PrePersist
     private void init(){
         dateTime = LocalDateTime.now();
     }
+    // Данный метод будет заполнять поле даты и времени при создании объекта класса
+
+
+    public Product(int id, String title, String description, float price, String warehouse, String seller, Category category, LocalDateTime dateTime, List<Image> imageList) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.warehouse = warehouse;
+        this.seller = seller;
+        this.category = category;
+        this.dateTime = dateTime;
+        this.imageList = imageList;
+    }
+
     public Product() {
     }
     public int getId() {
