@@ -29,12 +29,11 @@ public class MainController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        System.out.println(personDetails.getPerson());
-        System.out.println("ID пользователя: " + personDetails.getPerson().getId());
-        System.out.println("Логин пользователя: " + personDetails.getPerson().getLogin());
-        System.out.println("Пароль пользователя: " + personDetails.getPerson().getPassword());
-        System.out.println("Роль пользователя: " + personDetails.getPerson().getRole());
-        System.out.println(personDetails);
+        String role = personDetails.getPerson().getRole();
+        if(role.equals("ROLE_ADMIN")){
+            return "redirect:/admin";
+        }
+
         return "index";
     }
     @GetMapping("/registration")
