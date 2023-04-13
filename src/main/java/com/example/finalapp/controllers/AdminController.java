@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AdminController {
-    private final CategoryRepository categoryRepository;
-
+   final private CategoryRepository categoryRepository;
 
     public AdminController(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
+
 
     @GetMapping("/admin")
     public String admin(){
