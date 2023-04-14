@@ -29,18 +29,28 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping("/admin/product/add")
+    @GetMapping("admin/product/add")
     public String addProduct(Model model){
         model.addAttribute("product", new Product());
-        model.addAttribute("category");
+        model.addAttribute("category", categoryRepository.findAll());
         return "product/addProduct";
     }
 
     @PostMapping("/admin/product/add")
-    public void addProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult,
-                              @RequestParam("file_one")MultipartFile file_one, @RequestParam("file_two")MultipartFile file_two, @RequestParam("file_three")MultipartFile file_three,@RequestParam("file_four")MultipartFile file_four,@RequestParam("file_five")MultipartFile file_five,@RequestParam("category")int category, Model model){
+    public String addProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult,
+                           @RequestParam("file_one")MultipartFile file_one,
+                           @RequestParam("file_two")MultipartFile file_two,
+                           @RequestParam("file_three")MultipartFile file_three,
+                           @RequestParam("file_four")MultipartFile file_four,
+                           @RequestParam("file_five")MultipartFile file_five,
+                           @RequestParam("category")int category, Model model){
         Category category_db = (Category) categoryRepository.findById(category).orElseThrow();
         System.out.println(category_db.getName());
+        if(bindingResult.hasErrors()){
+            model.addAttribute("category", categoryRepository.findAll());
+            return "product/addProduct";
+        }
+        return null;
     }
 
 }
