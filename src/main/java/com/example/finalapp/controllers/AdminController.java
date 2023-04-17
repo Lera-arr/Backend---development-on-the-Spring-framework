@@ -31,9 +31,11 @@ public class AdminController {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
     }
-
+//    метод отображение главной страницы с продуктами
     @GetMapping("/admin")
-    public String admin(){
+    public String admin(Model model)
+    {
+        model.addAttribute("products", productService.getAllProduct());
         return "admin";
     }
 
