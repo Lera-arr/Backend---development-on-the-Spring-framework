@@ -137,5 +137,14 @@ public class AdminController {
         productService.saveProduct(product,category_db);
         return "redirect:/admin";
     }
-
+//    Обработка формы редактирования
+    @PostMapping("admin/product/edit/{id}")
+    public String editProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult, @PathVariable("id") int id, Model model){
+        if(bindingResult.hasErrors()){
+            model.addAttribute("category", categoryRepository.findAll());
+            return "product/editProduct";
+        }
+        productService.updateProduct(id, product);
+        return "redirect:/admin";
+    }
 }
