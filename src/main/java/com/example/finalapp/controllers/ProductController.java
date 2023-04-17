@@ -27,5 +27,6 @@ public class ProductController {
         model.addAttribute("product", productService.getProductId(id));
         return "/product/infoProduct";
     }
+
 }
 

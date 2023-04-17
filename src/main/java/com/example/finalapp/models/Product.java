@@ -136,4 +136,11 @@ public class Product {
         this.dateTime = dateTime;
     }
 
+    public List<Image> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
+    }
 }
