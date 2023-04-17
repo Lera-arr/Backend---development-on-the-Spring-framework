@@ -1,6 +1,5 @@
 package com.example.finalapp.services;
 
-
 import com.example.finalapp.models.Category;
 import com.example.finalapp.models.Product;
 import com.example.finalapp.repositories.ProductRepository;
@@ -10,21 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
-@Transactional(readOnly = true)
+@Transactional
 public class ProductService {
     private final ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-
     // Данный метод позволяет получить список всех товаров
     public List<Product> getAllProduct(){
         return productRepository.findAll();
     }
-
     // Данный метод позволяет получить товар по id
     public Product getProductId(int id){
         Optional<Product> optionalProduct = productRepository.findById(id);
@@ -35,10 +31,9 @@ public class ProductService {
     @Transactional
     public void saveProduct(Product product, Category category){
         product.setCategory(category);
-        productRepository.save(product);
-    }
-
+        productRepository.save(product);}
     // Данный метод позволяет обновить данные о товаре
+
     @Transactional
     public void updateProduct(int id, Product product){
         product.setId(id);
@@ -50,4 +45,5 @@ public class ProductService {
     public void deleteProduct(int id){
         productRepository.deleteById(id);
     }
+
 }

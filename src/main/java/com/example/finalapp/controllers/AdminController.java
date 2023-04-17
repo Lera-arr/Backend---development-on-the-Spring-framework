@@ -4,7 +4,7 @@ import com.example.finalapp.models.Category;
 import com.example.finalapp.models.Image;
 import com.example.finalapp.models.Product;
 import com.example.finalapp.repositories.CategoryRepository;
-import com.example.finalapp.security.ProductService;
+import com.example.finalapp.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
