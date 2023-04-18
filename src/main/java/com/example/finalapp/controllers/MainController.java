@@ -110,4 +110,17 @@ public class MainController {
         return "/product/product";
 
     }
+    @GetMapping("/cart/add/{id}")
+    public String addProductInCart(@PathVariable("id") int id, Model model){
+        // Получаем продукт по id
+        Product product = productService.getProductId(id);
+        // Извлекаем объект аутентифицированного пользователя
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        // Извлекаем id пользователя из объекта
+        int id_person = personDetails.getPerson().getId();
+        Cart cart = new Cart(id_person, product.getId());
+        cartRepository.save(cart);
+        return "redirect:/cart";
+    }
 }
