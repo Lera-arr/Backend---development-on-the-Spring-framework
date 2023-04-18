@@ -45,5 +45,27 @@ public class ProductService {
     public void deleteProduct(int id){
         productRepository.deleteById(id);
     }
+//    public List<Product> getfindByTitleContainingIgnoreCase(String name){
+//        return productRepository.findByTitleContainingIgnoreCase(name);
+//    }
+//    public List<Product> getfindByTitleAndPriceGreaterThanEqualAndPriceLessThanEqual(String title, float ot, float Do){
+//        return productRepository.findByTitleAndPriceGreaterThanEqualAndPriceLessThanEqual(title, ot, Do);
+//    }
+//
+//    public List<Product> getfindByTitleOrderByPriceAsc(String title, float ot, float Do){
+//        return productRepository.findByTitleOrderByPriceAsc(title, ot,  Do);
+//    }
+//    public List<Product> getfindByTitleOrderByPriceDesc(String title, float ot, float Do) {
+//        return productRepository.findByTitleOrderByPriceDesc( title,  ot,  Do);
+//    }
+//
+//    public List<Product> getfindByTitleAndCategoryOrderByPriceAsc(String title, float ot, float Do, int category){
+//        return productRepository.findByTitleAndCategoryOrderByPriceAsc( title,  ot, Do,  category);
+//    }
+//
+//    public List<Product> getfindByTitleAndCategoryOrderByPriceDesc(String title, float ot, float Do, int category) {
+//        return productRepository.findByTitleAndCategoryOrderByPriceDesc( title,  ot,  Do,  category);
+//    }
+
 
 }

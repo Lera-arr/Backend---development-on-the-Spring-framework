@@ -57,6 +57,10 @@ public class Product {
     }
     // Данный метод будет заполнять поле даты и времени при создании объекта класса
 
+    @ManyToMany()
+    @JoinTable(name = "product_cart", joinColumns = @JoinColumn(name = "product_id"),inverseJoinColumns = @JoinColumn(name = "person_id"))
+    private List<Person> personList;
+
 
     public Product(int id, String title, String description, float price, String warehouse, String seller, Category category, LocalDateTime dateTime, List<Image> imageList) {
         this.id = id;
