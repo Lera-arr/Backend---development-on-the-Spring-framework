@@ -223,5 +223,11 @@ public class MainController {
         model.addAttribute("orders", orderList);
         return "/user/orders";
     }
+    @PostMapping("/product")
+    public String resultProduct(Model model) {
+        model.addAttribute("products", productService.getAllProduct());
+        return "/product/product";
+        }
 
-}
+
+    }

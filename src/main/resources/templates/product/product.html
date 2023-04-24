@@ -7,7 +7,10 @@
 <link th:href="@{/css/Product.css}" type="text/css" rel="stylesheet">
 <body>
 <h2>Главная страница <br>
-  "ДОМОВЕНОК"- настольные игры</h2>
+  "ДОМОВЕНОК"- настольные игры</h2> <br>
+<form method="post" th:action="@{/registration}">
+  <button type="submit">Зарегистрироваться</button><br>
+</form>
 <h3>Cортировка, поиск, фильтрация</h3>
 
 <form th:method="POST" th:action="@{/product/search}">
