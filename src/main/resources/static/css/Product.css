@@ -13,3 +13,15 @@ body {
     margin: 20px;
     padding: 40px;
 }
+.infoProduct
+{
+    display: grid;
+    grid-template-columns: 1fr  1fr  1fr;
+}
+a{
+    text-decoration: none;
+    color: #006e89;}
+
+.navigation:hover{
+    color: #a69696;
+    background-color:  #d9e8ff;}
