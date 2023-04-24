@@ -3,19 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>Информация о товаре</title>
+  <link th:href="@{/css/infoProduct.css}" type="text/css" rel="stylesheet">
 </head>
+
 <body>
+<div class="infoProduct">
 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 <h3>Информация о товаре: </h3>
 <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
-<p th:text="'Описание: ' + ${product.getDescription()}"></p>
+<p class="descriptionText" th:text="'Описание: ' + ${product.getDescription()}"></p>
 <p th:text="'Цена: ' + ${product.getPrice()}"></p>
 <p th:text="'Cклад: ' + ${product.getWarehouse()}"></p>
 <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
 <p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
-<div th:each="img : ${product.getImageList()}">
+<div class="float">
+    <div  th:each="img : ${product.getImageList()}">
   <img th:src="'/img/' + ${img.getFileName()}">
   <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    </div>
+</div>
 </div>
 </body>
 </html>

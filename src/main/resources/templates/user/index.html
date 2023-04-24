@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Главная страница</title>
+    <link th:href="@{/css/index.css}" type="text/css" rel="stylesheet">
 </head>
+
 <body>
-<form method="post" action="/logout">
+
+    <form method="post" action="/logout">
     <button type="submit">Выйти из личного кабинета</button>
-</form>
+    </form>
 <br>
-<form method="get" th:action="@{/cart}">
+    <form method="get" th:action="@{/cart}">
     <button type="submit">Корзина</button>
-</form>
+    </form>
 <br>
-<form method="get" th:action="@{/orders}">
+    <form method="get" th:action="@{/orders}">
     <input type="submit" value="Заказы">
-</form>
-<h1>Личный кабинет</h1>
+    </form>
+
+<h1>Личный кабинет </h1>
 <h3>Cортировка, поиск, фильтрация</h3>
+
+
 <form th:method="POST" th:action="@{/person account/product/search}">
     <fieldset>
         <legend>Выберите параметры для сортировки, поиска, фильтрации:</legend>
@@ -56,8 +62,10 @@
         </div>
     </fieldset>
 </form>
-<hr>
-<h3>Результат поиска, cортировки, фильтрации</h3>
+
+<h3>Результат поиска, cортировки, фильтрации</h3><hr>
+
+    <div class="infoProduct">
 <div th:each="product : ${search_product}">
     <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
     <br>
@@ -65,15 +73,21 @@
     <p th:text="'Цена: ' + ${product.getPrice()}"></p>
     <hr>
 </div>
-<hr>
+    </div>
+        <div class="infoProduct">
+
 <h3>Доступные товары: </h3>
 <div th:each="product : ${products}">
     <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
     <br>
+    <div class="navigation">
     <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+    </div>
     <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
-    <hr>
+    <div class="navigation1">
+        <a th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
+
 </div>
+</div> </div>
 </body>
 </html>
