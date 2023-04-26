@@ -32,8 +32,8 @@ public class ProductService {
     public void saveProduct(Product product, Category category){
         product.setCategory(category);
         productRepository.save(product);}
-    // Данный метод позволяет обновить данные о товаре
 
+    // Данный метод позволяет обновить данные о товаре
     @Transactional
     public void updateProduct(int id, Product product){
         product.setId(id);

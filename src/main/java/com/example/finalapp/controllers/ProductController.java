@@ -79,5 +79,10 @@ public class ProductController {
         return "/product/product";
 
     }
+    @PostMapping("/product")
+    public String resultProduct(Model model) {
+        model.addAttribute("products", productService.getAllProduct());
+        return "/product/product";
+    }
 }
 

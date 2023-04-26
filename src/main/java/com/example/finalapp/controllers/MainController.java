@@ -222,12 +222,18 @@ public class MainController {
         List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
         model.addAttribute("orders", orderList);
         return "/user/orders";
+
     }
     @PostMapping("/product")
     public String resultProduct(Model model) {
         model.addAttribute("products", productService.getAllProduct());
         return "/product/product";
-        }
+    }
+    @PostMapping("/admin/person")
+    public String getAllPerson(Model model){
+        model.addAttribute("persons", personService.getAllPerson());
+        return "/person/person";
+    }
 
 
     }

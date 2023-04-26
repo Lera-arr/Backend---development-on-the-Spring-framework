@@ -2,8 +2,11 @@ package com.example.finalapp.controllers;
 
 import com.example.finalapp.models.Category;
 import com.example.finalapp.models.Image;
+import com.example.finalapp.models.Person;
 import com.example.finalapp.models.Product;
 import com.example.finalapp.repositories.CategoryRepository;
+import com.example.finalapp.repositories.PersonRepository;
+import com.example.finalapp.services.PersonService;
 import com.example.finalapp.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,14 +23,23 @@ import java.util.UUID;
 @Controller
 public class AdminController {
     private final ProductService productService;
+    private final CategoryRepository categoryRepository;
+    private final PersonService personService;
+    private final PersonRepository personRepository;
     @Value("${upload.path}")
     private String uploadPath;
 
-    private final CategoryRepository categoryRepository;
-    public AdminController(ProductService productService, CategoryRepository categoryRepository) {
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, PersonRepository personRepository) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
+        this.personService = personService;
+        this.personRepository = personRepository;
     }
+
+    //    public AdminController(ProductService productService, CategoryRepository categoryRepository) {
+//        this.productService = productService;
+//        this.categoryRepository = categoryRepository;
+//    }
 //    метод отображение главной страницы с продуктами
     @GetMapping("/admin")
     public String admin(Model model)
@@ -147,4 +159,32 @@ public class AdminController {
         productService.updateProduct(id, product);
         return "redirect:/admin";
     }
+
+
+//    выводим всех пользователей
+    @GetMapping("/admin/person")
+    public String getAllPerson(Model model){
+        model.addAttribute("persons", personService.getAllPerson());
+        return "/person/person";
+    }
+
+
+    //    Обработка формы редактирования
+    @GetMapping("admin/person/edit/{id}")
+    public String editPerson(Model model, @PathVariable("id") int id){
+        model.addAttribute("person", personService.getPersonId(id));
+        return ("/person/editPerson");
+    }
+
+    @PostMapping("admin/person/edit/{id}")
+    public String editPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult, @PathVariable("id") int id, Model model){
+//    if(bindingResult.hasErrors()){
+//            model.addAttribute("person", personRepository.findAll());
+//          return "person/editPerson";
+//       }
+        System.out.println(person);
+        personService.updatePerson(id, person);
+        return "redirect:/admin/person";
+    }
+
 }
