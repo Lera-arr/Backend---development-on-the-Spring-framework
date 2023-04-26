@@ -8,12 +8,11 @@
 <link th:href="@{/css/persons.css}" type="text/css" rel="stylesheet">
 
 <button><a href="/admin">Главная страница администратора</a></button>
-<BR>
-<BR>
-<h2>Список пользователей сайта </h2> <br>
-
-<div class="navigation">
+<br><br><br><br><br>
+<h2>Список пользователей сайта </h2>
 <hr>
+<div class="navigation">
+
 <div class="infoProduct">
     <div th:each="person : ${persons}">
         <p th:text="'ID пользователя: ' + ${person.getId()}"></p>
