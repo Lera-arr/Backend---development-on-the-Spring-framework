@@ -6,7 +6,9 @@
     <link th:href="@{/css/admin.css}" type="text/css" rel="stylesheet">
 </head>
 <body>
-<h3>Редактирование товара</h3>
+<button><a href="/admin/product">Назад</a></button><br><br>
+
+<h3>Редактирование товара</h3><hr>
 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 
 <form th:method="POST" th:action="@{/admin/product/edit/{id}(id=${product.getId()})}" th:object="${product}" enctype="multipart/form-data">
